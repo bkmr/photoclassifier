@@ -339,7 +339,7 @@ namespace PhotoClassifier
             // Loads a PropertyItem from a Jpeg image stored in the assembly as a resource.
             var assembly = Assembly.GetExecutingAssembly();
             var emptyBitmapStream = assembly.GetManifestResourceStream("EXIFextractor.decoy.jpg");
-            var empty = Image.FromStream(emptyBitmapStream);
+            var empty = System.Drawing.Image.FromStream(emptyBitmapStream);
 
             item = empty.PropertyItems[0];
 
@@ -356,7 +356,7 @@ namespace PhotoClassifier
         public static PropertyItem[] GetExifProperties(string fileName)
         {
             var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-            var image = Image.FromStream(stream,
+            var image = System.Drawing.Image.FromStream(stream,
                 /* useEmbeddedColorManagement = */ true,
                 /* validateImageData = */ false);
             return image.PropertyItems;
